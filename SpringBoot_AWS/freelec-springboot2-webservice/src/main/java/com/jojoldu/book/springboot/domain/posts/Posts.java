@@ -4,11 +4,13 @@ import com.jojoldu.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 public class Posts extends BaseTimeEntity {
 
