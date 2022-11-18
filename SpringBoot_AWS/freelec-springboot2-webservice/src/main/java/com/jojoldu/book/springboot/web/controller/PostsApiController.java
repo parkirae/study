@@ -1,7 +1,6 @@
 package com.jojoldu.book.springboot.web.controller;
 
 import com.jojoldu.book.springboot.service.PostsService;
-import com.jojoldu.book.springboot.web.dto.PostsResponseDto;
 import com.jojoldu.book.springboot.web.dto.PostsSaveRequestDto;
 import com.jojoldu.book.springboot.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +21,11 @@ public class PostsApiController {
     @PutMapping("/posts/{id}")
     public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto) {
         return postsService.update(id, requestDto);
+    }
+
+    @DeleteMapping("/posts/{id}")
+    public Long delete(@PathVariable Long id) {
+        postsService.delete(id);
+        return id;
     }
 }
