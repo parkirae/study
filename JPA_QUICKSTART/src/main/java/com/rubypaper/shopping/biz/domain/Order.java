@@ -34,8 +34,13 @@ public class Order {
     private OrderStatus searchOrderStatus;
 
     public Order(Customer customer) {
-        this.customer = customer;
+        setCustomer(customer);
         this.status = OrderStatus.ORDER;
         this.orderDate = new Date();
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+        customer.getOrderList().add(this);
     }
 }
