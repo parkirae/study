@@ -19,9 +19,6 @@ public class Customer {
 
     private String comments;
 
-    private String city;
-
-    private String roadName;
-
-    private String zipCode;
+    @Embedded
+    private Address address;
 }
