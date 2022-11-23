@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -30,18 +31,40 @@ public class TodoService {
 
     // 생성
     public List<TodoEntity> create(final TodoEntity entity) {
-     // 검증
-     validate(entity);
+        // 검증
+        validate(entity);
 
-     repository.save(entity);
+        repository.save(entity);
 
-     log.info("Entity Id : {} is saved.", entity.getId());
+        log.info("Entity Id : {} is saved.", entity.getId());
 
-     return repository.findByUserId(entity.getUserId());
+        return repository.findByUserId(entity.getUserId());
     }
 
     // 조회
     public List<TodoEntity> retrieve(final String userId) {
         return repository.findByUserId(userId);
+    }
+
+    // 수정
+    public List<TodoEntity> update(final TodoEntity entity) {
+        // (1) 검증
+        validate(entity);
+
+        // (2) 엔티티 id 를 이용해 TodoEntity를 가져옵니다.
+        final Optional<TodoEntity> original = repository.findById(entity.getId());
+
+        if (original.isPresent()) {
+            // (3) 반환된 TodoEntity가 존재하면 값을 새 entity의 값으로 덮어 씌웁니다.
+            final TodoEntity todo = original.get();
+            todo.setTitle(entity.getTitle());
+            todo.setDone(entity.isDone());
+
+            // (4) 데이터베이스에 새 값을 저장합니다.
+            repository.save(todo);
+        }
+
+        // (5) 유저의 모든 Todo 리스트를 리턴합니다.
+        return retrieve(entity.getUserId());
     }
 }
