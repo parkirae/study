@@ -6,10 +6,7 @@ import com.example.demo.model.TodoEntity;
 import com.example.demo.service.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,6 +18,7 @@ public class TodoController {
     @Autowired
     private TodoService service;
 
+    // 생성
     @PostMapping
     public ResponseEntity<?> createTodo(@RequestBody TodoDTO dto) {
         try {
@@ -55,5 +53,25 @@ public class TodoController {
                     .error(error).build();
             return ResponseEntity.badRequest().body(response);
         }
+    }
+
+    // 조회
+    @GetMapping
+    public ResponseEntity<?> retrieveTodoList() {
+        String temporaryUserId = "temporary-user";
+
+        // (1) 서비스 메서드의 retrieve 메서드를 사용해 Todo 리스트를 가져옵니다.
+        List<TodoEntity> entities = service.retrieve(temporaryUserId);
+
+        // (2) 리천된 엔티티 리스트를 TodoDTO 리스트로 변환합니다.
+        List<TodoDTO> dtos = entities.stream()
+                .map(TodoDTO::new).collect(Collectors.toList());
+
+        // (6) 변환된 TodoDTO 리스트를 이용해 ResponseDTO를 초기화합니다.
+        ResponseDTO<TodoDTO> response = ResponseDTO.<TodoDTO>builder()
+                .data(dtos).build();
+
+        // (7) ResponseDTO를 리턴합니다.
+        return ResponseEntity.ok().body(response);
     }
 }
