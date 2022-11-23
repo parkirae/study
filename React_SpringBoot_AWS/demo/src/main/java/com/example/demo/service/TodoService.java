@@ -39,4 +39,9 @@ public class TodoService {
 
      return repository.findByUserId(entity.getUserId());
     }
+
+    // 조회
+    public List<TodoEntity> retrieve(final String userId) {
+        return repository.findByUserId(userId);
+    }
 }
