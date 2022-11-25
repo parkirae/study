@@ -11,6 +11,12 @@ const AddTodo = (props) => {
     setItem({ title: '' });
   };
 
+  const enterKeyEventHandler = (e) => {
+    if (e.key === 'Enter') {
+      onButtonClick();
+    }
+  };
+
   const onInputChange = (e) => {
     setItem({ title: e.target.value });
     console.log(item);
@@ -23,6 +29,7 @@ const AddTodo = (props) => {
           placeholder="Add Todo here"
           fullWidth
           onChange={onInputChange}
+          onButtonClick={enterKeyEventHandler}
           value={item.title}
         />
       </Grid>
