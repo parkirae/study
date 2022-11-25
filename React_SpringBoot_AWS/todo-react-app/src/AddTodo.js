@@ -4,6 +4,12 @@ import { Button, Grid, TextField } from '@mui/material';
 
 const AddTodo = (props) => {
   const [item, setItem] = useState({ title: '' });
+  const addItem = props.addItem;
+
+  const onButtonClick = () => {
+    addItem(item);
+    setItem({ title: '' });
+  };
 
   const onInputChange = (e) => {
     setItem({ title: e.target.value });
@@ -26,6 +32,7 @@ const AddTodo = (props) => {
           style={{ height: '100%' }}
           color="secondary"
           variant="outlined"
+          onClick={onButtonClick}
         >
           +
         </Button>
