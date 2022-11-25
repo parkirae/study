@@ -25,6 +25,11 @@ function App() {
     console.log('items : ', items);
   };
 
+  const deleteItem = (item) => {
+    const newItems = items.filter((e) => e.id !== item.id);
+    setItems([...newItems]);
+  };
+
   let todoItems = items.length > 0 && (
     <Paper style={{ margin: 16 }}>
       <List>
