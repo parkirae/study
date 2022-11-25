@@ -28,7 +28,8 @@ const Todo = (props) => {
       <Checkbox checked={item.done} />
       <ListItemText>
         <InputBase
-          inputProps={{ 'aria-label': 'naked' }}
+          inputProps={{ 'aria-label': 'naked', readOnly: readOnly }}
+          onClick={turnOffReadOnly}
           type="text"
           id={item.id}
           name={item.id}
