@@ -1,7 +1,8 @@
 import './App.css';
 import Todo from './Todo';
 import React, { useState } from 'react';
-import { List, Paper } from '@mui/material';
+import { Container, List, Paper } from '@mui/material';
+import AddTodo from './AddTodo';
 
 function App() {
   const [items, setItems] = useState([
@@ -27,7 +28,14 @@ function App() {
     </Paper>
   );
 
-  return <div className="App">{todoItems}</div>;
+  return (
+    <div className="App">
+      <Container maxWidth="md">
+        <AddTodo />
+        <div className="TodoList">{todoItems}</div>
+      </Container>
+    </div>
+  );
 }
 
 export default App;
