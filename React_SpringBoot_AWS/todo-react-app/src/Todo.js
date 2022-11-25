@@ -12,6 +12,12 @@ import DeleteOutlined from '@mui/material/DeleteOutlined';
 const Todo = (props) => {
   const [item, setItem] = useState(props.item);
   const [readOnly, setReadOnly] = useState(true);
+  const editItem = props.editItem;
+
+  const editEventHandler = (e) => {
+    item.title = e.target.value;
+    editItem();
+  };
 
   const turnOffReadOnly = () => {
     setReadOnly(false);
@@ -37,6 +43,7 @@ const Todo = (props) => {
           inputProps={{ 'aria-label': 'naked', readOnly: readOnly }}
           onClick={turnOffReadOnly}
           onKeyDown={turnOnreadOnly}
+          onChange={editEventHandler}
           type="text"
           id={item.id}
           name={item.id}
