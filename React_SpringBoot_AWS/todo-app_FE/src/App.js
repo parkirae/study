@@ -3,24 +3,13 @@ import Todo from './Todo';
 import React, { useState, useEffect } from 'react';
 import { Container, List, Paper } from '@mui/material';
 import AddTodo from './AddTodo';
+import { call } from './ApiService';
 
 function App() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const requestOptions = {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    };
-
-    fetch('http://localhost:8080/todo', requestOptions)
-      .then((response) => response.json())
-      .then(
-        (response) => {
-          setItems(response.data);
-        },
-        (error) => {}
-      );
+    call('/todo', 'GET', null).then((response) => setItems(response.data));
   }, []);
 
   const addItem = (item) => {
