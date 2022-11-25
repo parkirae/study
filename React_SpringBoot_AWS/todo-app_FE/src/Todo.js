@@ -7,7 +7,7 @@ import {
   ListItemSecondaryAction,
   IconButton,
 } from '@mui/material';
-import DeleteOutlined from '@mui/material/DeleteOutlined';
+import DeleteOutlined from '@mui/icons-material/DeleteOutlined';
 
 const Todo = (props) => {
   const [item, setItem] = useState(props.item);
