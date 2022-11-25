@@ -11,6 +11,11 @@ import DeleteOutlined from '@mui/material/DeleteOutlined';
 
 const Todo = (props) => {
   const [item, setItem] = useState(props.item);
+  const [readOnly, setReadOnly] = useState(true);
+
+  const turnOffReadOnly = () => {
+    setReadOnly(false);
+  };
 
   const deleteItem = props.deleteItem;
 
