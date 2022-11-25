@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Todo = () => {
+const Todo = (props) => {
+  const [item, setItem] = useState(props.item);
+
   return (
     <div className="Todo">
-      <input type="checkbox" id="todo0" name="todo0" value="todo0" />
-      <label for="todo0">Todo 컴포넌트 만들기</label>
+      <input type="checkbox" id={item.id} name={item.id} value={item.done} />
+      <label for={item.id}>{item.title}</label>
     </div>
   );
 };
