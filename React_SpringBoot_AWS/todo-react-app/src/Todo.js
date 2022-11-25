@@ -17,6 +17,12 @@ const Todo = (props) => {
     setReadOnly(false);
   };
 
+  const turnOnreadOnly = (e) => {
+    if (e.key === 'Enter') {
+      setReadOnly(true);
+    }
+  };
+
   const deleteItem = props.deleteItem;
 
   const deleteEventHandler = () => {
