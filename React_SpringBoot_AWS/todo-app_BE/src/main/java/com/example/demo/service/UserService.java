@@ -26,4 +26,9 @@ public class UserService {
 
         return userRepository.save(userEntity);
     }
+
+    // 조회
+    public UserEntity getByCredentials(final String username, final String password) {
+        return userRepository.findByUsernameAndPassword(username, password);
+    }
 }
