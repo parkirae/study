@@ -1,6 +1,7 @@
 package com.example.demo.security;
 
 import com.example.demo.model.UserEntity;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,7 @@ import java.util.Date;
 public class TokenProvider {
     private static final String SECRET_KEY = "duddnjsgltksmsrjt";
 
+    // JWT Token 생성
     public String create(UserEntity userEntity) {
         // 기한을 설정합니다.(1일)
         Date expiryDate = Date.from(
@@ -28,5 +30,15 @@ public class TokenProvider {
                 .setIssuedAt(new Date())
                 .setExpiration(expiryDate)
                 .compact();
+    }
+
+    // JWT Token 조회
+    public String validateAndGetUserId(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(SECRET_KEY)
+                .parseClaimsJws(token)
+                .getBody();
+
+        return claims.getSubject();
     }
 }
