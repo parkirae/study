@@ -1,4 +1,4 @@
-import { API_BASE_URL } from './api-config';
+import { API_BASE_URL } from '../api-config';
 
 export function call(api, method, request) {
   let options = {
