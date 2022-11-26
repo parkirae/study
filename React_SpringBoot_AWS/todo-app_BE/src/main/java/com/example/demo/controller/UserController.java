@@ -47,4 +47,27 @@ public class UserController {
                     .body(responseDTO);
         }
     }
+
+    // 로그인
+    @PostMapping("/signin")
+    public ResponseEntity<?> authenticate(@RequestBody UserDTO userDTO) {
+        UserEntity user = userService.getByCredentials(
+                userDTO.getUsername(),
+                userDTO.getPassword());
+
+        if (user != null) {
+            final UserDTO responseUserDTO = UserDTO.builder()
+                    .username(user.getUsername())
+                    .id(user.getId())
+                    .build();
+            return ResponseEntity.ok().body(responseUserDTO);
+        } else {
+            ResponseDTO responseDTO = ResponseDTO.builder()
+                    .error("Login failed")
+                    .build();
+            return ResponseEntity
+                    .badRequest()
+                    .body(responseDTO);
+        }
+    }
 }
