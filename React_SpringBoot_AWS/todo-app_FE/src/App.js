@@ -16,6 +16,7 @@ import { call, signout } from './Service/ApiService';
 
 function App() {
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     call('/todo', 'GET', null).then((response) => setItems(response.data));
@@ -65,15 +66,24 @@ function App() {
     </AppBar>
   );
 
-  return (
-    <div className="App">
+  let todoListPage = (
+    <div>
       {navigationBar}
       <Container maxWidth="md">
-        <AddTodo />
+        <AddTodo addItem={addItem} />
         <div className="TodoList">{todoItems}</div>
       </Container>
     </div>
   );
+
+  let loadingPage = <h1> 잠시만요 :) </h1>;
+  let content = loadingPage;
+
+  if (!loading) {
+    content = todoListPage;
+  }
+
+  return <div className="App">{content}</div>;
 }
 
 export default App;
