@@ -32,6 +32,9 @@ export function call(api, method, request) {
 export function signin(userDTO) {
   return call('/auth/signin', 'POST', userDTO).then((response) => {
     if (response.token) {
+      // local Storage에 토큰을 저장합니다.
+      localStorage.setItem('ACCESS_TOKEN', response.token);
+      // 토큰이 존재하는 경우 Todo 화면으로 이동합니다.
       window.location.href = '/';
     }
   });
