@@ -1,9 +1,18 @@
 import './App.css';
 import Todo from './Todo';
 import React, { useState, useEffect } from 'react';
-import { Container, List, Paper } from '@mui/material';
+import {
+  Container,
+  List,
+  Paper,
+  Grid,
+  Button,
+  AppBar,
+  Toolbar,
+  Typography,
+} from '@mui/material';
 import AddTodo from './AddTodo';
-import { call } from './Service/ApiService';
+import { call, signout } from './Service/ApiService';
 
 function App() {
   const [items, setItems] = useState([]);
@@ -43,8 +52,26 @@ function App() {
     </Paper>
   );
 
+  let navigationBar = (
+    <AppBar position="static">
+      <Toolbar>
+        <Grid justifyContent="space-between" container>
+          <Grid item>
+            <Typography variant="h6">오늘의 할 일</Typography>
+          </Grid>
+          <Grid item>
+            <Button color="inherit" raised onClick={signout}>
+              로그아웃
+            </Button>
+          </Grid>
+        </Grid>
+      </Toolbar>
+    </AppBar>
+  );
+
   return (
     <div className="App">
+      {navigationBar}
       <Container maxWidth="md">
         <AddTodo />
         <div className="TodoList">{todoItems}</div>
