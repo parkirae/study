@@ -28,8 +28,9 @@ function App() {
   };
 
   const deleteItem = (item) => {
-    const newItems = items.filter((e) => e.id !== item.id);
-    setItems([...newItems]);
+    call('/todo', 'DELETE', item).then((response) => {
+      setItems(response.data);
+    });
   };
 
   const editItem = (item) => {
