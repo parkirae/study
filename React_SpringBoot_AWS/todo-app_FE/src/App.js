@@ -22,15 +22,11 @@ function App() {
   }, []);
 
   const addItem = (item) => {
-    call('/todo', 'POST', item).then((response) => {
-      setItems(response.data);
-    });
+    call('/todo', 'POST', item).then((response) => setItems(response.data));
   };
 
   const deleteItem = (item) => {
-    call('/todo', 'DELETE', item).then((response) => {
-      setItems(response.data);
-    });
+    call('/todo', 'DELETE', item).then((response) => setItems(response.data));
   };
 
   const editItem = (item) => {
