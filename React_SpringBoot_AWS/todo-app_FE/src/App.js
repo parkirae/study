@@ -22,10 +22,9 @@ function App() {
   }, []);
 
   const addItem = (item) => {
-    item.id = 'ID-' + items.length;
-    item.done = false;
-    setItems([...items, item]);
-    console.log('items : ', items);
+    call('/todo', 'POST', item).then((response) => {
+      setItems(response.data);
+    });
   };
 
   const deleteItem = (item) => {
