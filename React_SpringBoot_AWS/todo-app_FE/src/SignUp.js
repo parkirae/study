@@ -38,7 +38,7 @@ function Signup() {
               autoFocus
             />
           </Grid>
-          <Gird item xs={12}>
+          <Grid item xs={12}>
             <TextField
               variant="outlined"
               required
@@ -49,7 +49,7 @@ function Signup() {
               id="password"
               autoComplete="current-password"
             />
-          </Gird>
+          </Grid>
           <Grid item xs={12}>
             <Button type="submit" fullWidth variant="contained" color="primary">
               계정 생성
