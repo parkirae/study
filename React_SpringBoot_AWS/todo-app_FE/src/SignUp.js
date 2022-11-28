@@ -2,9 +2,8 @@ import React from 'react';
 import { Container, Grid, Typography, TextField, Button } from '@mui/material';
 import { signup } from './Service/ApiService';
 import { Link } from 'react-router-dom';
-import SignUp from './SignUp';
 
-function Signup() {
+function SignUp() {
   const handleSubmit = (event) => {
     event.preventDefault();
     // 오브젝트에서 form에 저장된 데이터를 맵의 형태로 변경합니다.
