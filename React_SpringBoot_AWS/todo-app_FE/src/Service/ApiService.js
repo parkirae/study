@@ -34,7 +34,7 @@ export function call(api, method, request) {
     })
     .catch((error) => {
       console.log('http error');
-      console.logo(error);
+      console.log(error);
     });
 }
 
