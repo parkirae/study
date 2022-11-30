@@ -39,7 +39,6 @@ public class OAuthUserServiceImpl extends DefaultOAuth2UserService {
         // login 필드를 가져옵니다.
         final String username = (String) oAuth2User.getAttributes().get("login");
         final String authProvider = userRequest.getClientRegistration().getClientName();
-
         UserEntity userEntity = null;
 
         // 유저가 존재하지 않으면 새로 생성합니다.
@@ -49,9 +48,11 @@ public class OAuthUserServiceImpl extends DefaultOAuth2UserService {
                     .authProvider(authProvider)
                     .build();
             userEntity = userRepository.save(userEntity);
+        } else {
+            userEntity = userRepository.findByUsername(username);
         }
 
         log.info("Successfully pulled user info username {} authProvider {}", username, authProvider);
-        return oAuth2User;
+        return new ApplicationOAuth2User(userEntity.getId(), oAuth2User.getAttributes());
     }
 }
