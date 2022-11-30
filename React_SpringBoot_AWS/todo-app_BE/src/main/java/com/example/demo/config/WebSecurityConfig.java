@@ -33,7 +33,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .oauth2Login();
+                .oauth2Login()
+                        .redirectionEndpoint()
+                                .baseUri("/oauth2/callback/*");
 
         http.addFilterAfter(
                 jwtAuthenticationFilter,
