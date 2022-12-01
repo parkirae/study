@@ -1,6 +1,7 @@
 package com.example.demo.config;
 
 import com.example.demo.security.JwtAuthenticationFilter;
+import com.example.demo.security.OAuthSuccessHandler;
 import com.example.demo.security.OAuthUserServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private OAuthUserServiceImpl oAuthUserService;
+
+    @Autowired
+    private OAuthSuccessHandler oAuthSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -42,7 +46,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                 .baseUri("/oauth2/callback/*")
                 .and()
                 .userInfoEndpoint()
-                .userService(oAuthUserService);
+                .userService(oAuthUserService)
+                .and()
+                .successHandler(oAuthSuccessHandler);
 
         http.addFilterAfter(
                 jwtAuthenticationFilter,

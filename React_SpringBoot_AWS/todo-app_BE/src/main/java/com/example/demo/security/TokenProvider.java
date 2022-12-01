@@ -30,8 +30,21 @@ public class TokenProvider {
                 .setSubject(userPrincipal.getName())
                 .setIssuedAt(new Date())
                 .setExpiration(expiryDate)
-                .setIssuer("todo app")
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+                .compact();
+    }
+
+    public String create(UserEntity userEntity) {
+        Date expiryDate = Date.from(
+                Instant.now()
+                        .plus(1, ChronoUnit.DAYS));
+
+        return Jwts.builder()
+                .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
+                .setSubject(userEntity.getId())
+                .setIssuer("todo app")
+                .setIssuedAt(new Date())
+                .setExpiration(expiryDate)
                 .compact();
     }
 

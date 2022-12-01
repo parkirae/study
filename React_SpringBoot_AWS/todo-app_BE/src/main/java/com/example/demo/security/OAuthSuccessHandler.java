@@ -23,5 +23,4 @@ public class OAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         response.getWriter().write(token);
         log.info("token {}", token);
     }
-
 }
