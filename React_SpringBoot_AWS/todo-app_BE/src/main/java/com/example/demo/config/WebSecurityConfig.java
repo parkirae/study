@@ -3,12 +3,14 @@ package com.example.demo.config;
 import com.example.demo.security.JwtAuthenticationFilter;
 import com.example.demo.security.OAuthSuccessHandler;
 import com.example.demo.security.OAuthUserServiceImpl;
+import com.example.demo.security.RedirectUrlCookieFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter;
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.web.filter.CorsFilter;
 
@@ -24,6 +26,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private OAuthSuccessHandler oAuthSuccessHandler;
+
+    @Autowired
+    private RedirectUrlCookieFilter redirectUrlFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -60,6 +65,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterAfter(
                 jwtAuthenticationFilter,
                 CorsFilter.class
+        );
+        http.addFilterBefore(
+                redirectUrlFilter,
+                OAuth2AuthorizationRequestRedirectFilter.class
         );
     }
 }
