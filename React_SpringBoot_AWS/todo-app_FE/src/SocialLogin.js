@@ -35,4 +35,4 @@ const SocialLogin = (props) => {
   }
 };
 
-export default SocialLogin();
+export default SocialLogin;

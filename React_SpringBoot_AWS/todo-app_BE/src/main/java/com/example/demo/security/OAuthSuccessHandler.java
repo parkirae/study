@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Optional;
 
+import static com.example.demo.security.RedirectUrlCookieFilter.REDIRECT_URI_PARAM;
+
 @Slf4j
 @Component
 @AllArgsConstructor
@@ -26,7 +28,7 @@ public class OAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         TokenProvider tokenProvider = new TokenProvider();
         String token = tokenProvider.create(authentication);
 
-        Optional<Cookie> oCookie = Arrays.stream(request.getCookies()).filter(cookie -> cookie.getName().equals(LOCAL_REDIRECT_URL)).findFirst();
+        Optional<Cookie> oCookie = Arrays.stream(request.getCookies()).filter(cookie -> cookie.getName().equals(REDIRECT_URI_PARAM)).findFirst();
         Optional<String> redirectUri = oCookie.map(Cookie::getValue);
 
         log.info("token {}", token);
