@@ -28,8 +28,7 @@ export function call(api, method, request) {
       } else if (response.status === 403) {
         window.location.href = '/login';
       } else {
-        Promise.reject(response);
-        throw Error(response);
+        new Error(response);
       }
     })
     .catch((error) => {
@@ -51,7 +50,7 @@ export function signin(userDTO) {
 
 export function signout() {
   localStorage.setItem('ACCESS_TOKEN', null);
-  window.location.href = '/';
+  window.location.href = '/login';
 }
 
 export function signup(userDTO) {

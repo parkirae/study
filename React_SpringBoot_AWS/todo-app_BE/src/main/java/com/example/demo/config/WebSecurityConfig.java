@@ -14,61 +14,62 @@ import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequest
 import org.springframework.security.web.authentication.Http403ForbiddenEntryPoint;
 import org.springframework.web.filter.CorsFilter;
 
-@Slf4j
 @EnableWebSecurity
+@Slf4j
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private JwtAuthenticationFilter jwtAuthenticationFilter;
+  @Autowired
+  private JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    @Autowired
-    private OAuthUserServiceImpl oAuthUserService;
+  @Autowired
+  private OAuthUserServiceImpl oAuthUserService;
 
-    @Autowired
-    private OAuthSuccessHandler oAuthSuccessHandler;
+  @Autowired
+  private OAuthSuccessHandler oAuthSuccessHandler; // Success Handler 추가
 
-    @Autowired
-    private RedirectUrlCookieFilter redirectUrlFilter;
+  @Autowired
+  private RedirectUrlCookieFilter redirectUrlFilter;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        // HTTP Security Builder
-        http.cors()
-                .and()
-                .csrf()
-                .disable()
-                .httpBasic()
-                .disable()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests()
-                .antMatchers("/", "/auth/**", "/oauth2/**").permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .oauth2Login()
-                        .redirectionEndpoint()
-                                .baseUri("/oauth2/callback/*")
-                .and()
-                .authorizationEndpoint()
-                .baseUri("/auth/authorize")
-                .and()
-                .userInfoEndpoint()
-                .userService(oAuthUserService)
-                .and()
-                .successHandler(oAuthSuccessHandler)
-                .and()
-                .exceptionHandling()
-                .authenticationEntryPoint(new Http403ForbiddenEntryPoint());
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    // http 시큐리티 빌더
+    http.cors()
+        .and()
+        .csrf()
+        .disable()
+        .httpBasic()
+        .disable()
+        .sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
+        .authorizeRequests()
+        .antMatchers("/", "/auth/**", "/oauth2/**").permitAll()
+        .anyRequest()
+        .authenticated()
+        .and()
+        .oauth2Login()
+        .redirectionEndpoint()
+        .baseUri("/oauth2/callback/*")
+        .and()
+        .authorizationEndpoint()
+        .baseUri("/auth/authorize") // OAuth 2.0 흐름 시작을 위한 엔드포인트 추가
+        .and()
+        .userInfoEndpoint()
+        .userService(oAuthUserService)
+        .and()
+        .successHandler(oAuthSuccessHandler)
+        .and()
+        .exceptionHandling()
+        .authenticationEntryPoint(new Http403ForbiddenEntryPoint()); // Http403ForbiddenEntryPoint 추가
 
-        http.addFilterAfter(
-                jwtAuthenticationFilter,
-                CorsFilter.class
-        );
-        http.addFilterBefore(
-                redirectUrlFilter,
-                OAuth2AuthorizationRequestRedirectFilter.class
-        );
-    }
+    http.addFilterAfter(
+        jwtAuthenticationFilter,
+        CorsFilter.class
+    );
+    http.addFilterBefore( // Before
+        redirectUrlFilter,
+        OAuth2AuthorizationRequestRedirectFilter.class // 리디렉트가 되기 전에 필터를 실행해야 한다.
+    );
+  }
 }
+

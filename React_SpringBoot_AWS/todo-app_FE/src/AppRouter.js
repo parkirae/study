@@ -1,18 +1,18 @@
-import React from 'react';
-import './index.css';
-import App from './App';
-import SignUp from './SignUp';
-import Login from './Login';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Typography, Box } from '@mui/material';
-import SocialLogin from './SocialLogin';
+import React from "react";
+import "./index.css";
+import App from "./App";
+import Login from "./Login";
+import SignUp from "./SignUp";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Typography, Box } from "@mui/material";
+import SocialLogin from "./SocialLogin";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright ©'}
+      {"Copyright ©"}
       irae, {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
