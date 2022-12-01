@@ -1,5 +1,5 @@
+application-dev.yml
 HELP.md
-.application-dev.yml
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -36,3 +36,8 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

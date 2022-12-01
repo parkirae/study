@@ -1,17 +1,16 @@
 package com.example.demo.dto;
 
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
-@Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@Data
 public class ResponseDTO<T> {
-    private String error;
-    private List<T> data;
+  private String error;
+  private List<T> data;
 }
