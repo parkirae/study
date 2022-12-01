@@ -22,5 +22,6 @@ public class OAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
         response.getWriter().write(token);
         log.info("token {}", token);
+        response.sendRedirect("http://localhost:3000" + token);
     }
 }
