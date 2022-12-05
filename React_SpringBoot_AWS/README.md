@@ -1,5 +1,4 @@
-# Title
-소셜 로그인을 통한 todo application
+# 소셜 로그인을 통한 todo application
 
 ## technology
 
