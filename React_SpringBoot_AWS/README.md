@@ -37,6 +37,3 @@
 <br>
 ### CRUD 페이지
 ![4](https://user-images.githubusercontent.com/76719977/205746159-6408dec1-bacc-4a28-8533-41258789db3f.png)
-
-
-
