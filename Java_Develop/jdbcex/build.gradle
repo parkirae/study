@@ -3,7 +3,7 @@ plugins {
     id 'war'
 }
 
-group 'org.zerock'
+group 'com.zerock'
 version '1.0-SNAPSHOT'
 
 repositories {
