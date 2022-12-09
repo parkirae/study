@@ -5,5 +5,6 @@
 </head>
 <body>
     <h1>List Page</h1>
+            ${list}
 </body>
 </html>
