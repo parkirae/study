@@ -28,7 +28,7 @@ public class TodoServiceTests {
 
         log.info("---------------");
         log.info(todoDTO);
-        
+
         todoService.register(todoDTO);
     }
 }
