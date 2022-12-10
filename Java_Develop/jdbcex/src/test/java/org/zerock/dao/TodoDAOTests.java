@@ -50,4 +50,17 @@ public class TodoDAOTests {
 
         System.out.println(vo);
     }
+
+    // 수정
+    @Test
+    public void testUpdate() throws Exception {
+        TodoVO todoVO = TodoVO.builder()
+                .tno(1L)
+                .title("Sample Title...")
+                .dueDate(LocalDate.of(2022, 12, 31))
+                .finished(true)
+                .build();
+
+        todoDAO.updateOne(todoVO);
+    }
 }
