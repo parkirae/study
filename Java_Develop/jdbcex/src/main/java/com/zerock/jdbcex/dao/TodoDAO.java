@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TodoDAO {
 
@@ -57,5 +59,33 @@ public class TodoDAO {
         preparedStatement.setBoolean(3, vo.isFinished());
 
         preparedStatement.executeQuery();
+    }
+
+    // 전체 조회
+    public List<TodoVO> selectAll() throws Exception {
+
+        String sql = "SELECT * FROM tbl-todo";
+
+        @Cleanup
+        Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        @Cleanup
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        List<TodoVO> list = new ArrayList<>();
+
+        while (resultSet.next()) {
+            TodoVO vo = TodoVO.builder()
+                    .tno(resultSet.getLong("tno"))
+                    .title(resultSet.getString("title"))
+                    .dueDate(resultSet.getDate("dueDate").toLocalDate())
+                    .finished(resultSet.getBoolean("finished"))
+                    .build();
+
+            list.add(vo);
+        }
+
+        return list;
     }
 }
