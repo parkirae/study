@@ -22,6 +22,7 @@ public class TodoDAOTests {
         System.out.println(todoDAO.getTime());
     }
 
+    // 등록
     @Test
     public void testInsert() throws Exception {
         TodoVO todoVO = TodoVO.builder()
@@ -32,6 +33,7 @@ public class TodoDAOTests {
         todoDAO.insert(todoVO);
     }
 
+    // 전체 조회
     @Test
     public void testList() throws Exception {
         List<TodoVO> list = todoDAO.selectAll();
