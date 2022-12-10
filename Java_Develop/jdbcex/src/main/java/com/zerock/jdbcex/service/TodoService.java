@@ -4,8 +4,10 @@ import com.zerock.jdbcex.dao.TodoDAO;
 import com.zerock.jdbcex.domain.TodoVO;
 import com.zerock.jdbcex.dto.TodoDTO;
 import com.zerock.jdbcex.util.MapperUtil;
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 
+@Log4j2
 public enum TodoService {
     INSTNACE;
 
