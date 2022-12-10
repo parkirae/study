@@ -114,4 +114,19 @@ public class TodoDAO {
 
         return vo;
     }
+
+    // 삭제
+    public void deleteOne(Long tno) throws Exception {
+
+        String sql = "DELETE FROM tbl_todo FROM WHERE tno = ?";
+
+        @Cleanup
+        Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        preparedStatement.setLong(1, tno);
+
+        preparedStatement.executeUpdate();
+    }
 }
