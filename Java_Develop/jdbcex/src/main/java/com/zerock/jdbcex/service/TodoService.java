@@ -7,6 +7,9 @@ import com.zerock.jdbcex.util.MapperUtil;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Log4j2
 public enum TodoService {
     INSTNACE;
@@ -26,5 +29,19 @@ public enum TodoService {
         System.out.println("todoVO: " + todoVO);
 
         dao.insert(todoVO);
+    }
+
+    // 목록 조회
+    public List<TodoDTO> listAll() throws Exception {
+        List<TodoVO> voList = dao.selectAll();
+
+        log.info("volist...");
+        log.info(voList);
+
+        List<TodoDTO> dtoList = voList.stream()
+                .map(vo -> modelMapper.map(vo, TodoDTO.class))
+                .collect(Collectors.toList());
+
+        return dtoList;
     }
 }
