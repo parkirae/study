@@ -52,4 +52,13 @@ public enum TodoService {
         TodoDTO todoDTO = modelMapper.map(todoVO, TodoDTO.class);
         return todoDTO;
     }
+
+    // 수정
+    public void modify(TodoDTO todoDTO) throws Exception {
+        log.info("todoDTO: " + todoDTO);
+
+        TodoVO todoVO = modelMapper.map(todoDTO, TodoVO.class);
+
+        dao.updateOne(todoVO);
+    }
 }
