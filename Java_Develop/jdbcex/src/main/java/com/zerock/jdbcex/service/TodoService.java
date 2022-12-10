@@ -61,4 +61,10 @@ public enum TodoService {
 
         dao.updateOne(todoVO);
     }
+
+    // 삭제
+    public void remove(Long tno) throws Exception {
+        log.info("tno: " + tno);
+        dao.deleteOne(tno);
+    }
 }
