@@ -31,7 +31,7 @@ public class LoginController extends HttpServlet {
 
         String mid = req.getParameter("mid");
         String mpw = req.getParameter("mpw");
-        
+
         try {
             MemberDTO memberDTO = MemberService.INSTANCE.login(mid, mpw);
             HttpSession session = req.getSession();
