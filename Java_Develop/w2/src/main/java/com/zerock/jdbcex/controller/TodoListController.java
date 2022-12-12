@@ -26,7 +26,7 @@ public class TodoListController extends HttpServlet {
         ServletContext servletContext = req.getServletContext();
 
         log.info("appName: " + servletContext.getAttribute("appName"));
-        
+
         try {
             List<TodoDTO> dtoList = todoService.listAll();
             req.setAttribute("dtoList", dtoList);
