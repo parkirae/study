@@ -17,6 +17,17 @@ public class LoginCheckFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         log.info("Login check filter...");
 
+        HttpServletRequest req = (HttpServletRequest) request;
+        HttpServletResponse resp = (HttpServletResponse) response;
+
+        HttpSession session = req.getSession();
+
+        if (session.getAttribute("loginInfo") == null) {
+
+            resp.sendRedirect("/login");
+
+            return;
+        }
         chain.doFilter(request, response);
     }
 }
