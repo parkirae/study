@@ -21,6 +21,13 @@ public class LoginController extends HttpServlet {
 
         log.info("login get...");
 
+        String mid = req.getParameter("mid");
+        String mpw = req.getParameter("mpw");
+
+        String auto = req.getParameter("auto");
+
+        boolean rememberMe = auto != null && auto.equals("on");
+
         req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
     }
 
