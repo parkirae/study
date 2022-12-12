@@ -1,5 +1,6 @@
 package com.zerock.jdbcex.listener;
 
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
@@ -15,6 +16,10 @@ public class W2AppListener implements ServletContextListener {
         log.info("---info---");
         log.info("---info---");
         log.info("---info---");
+
+        ServletContext servletContext = sce.getServletContext();
+
+        servletContext.setAttribute("appName", "W2");
     }
 
     @Override
