@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import lombok.extern.java.Log;
 
 import java.io.IOException;
+import java.util.UUID;
 
 @Log
 @WebServlet("/login")
@@ -24,10 +25,6 @@ public class LoginController extends HttpServlet {
         String mid = req.getParameter("mid");
         String mpw = req.getParameter("mpw");
 
-        String auto = req.getParameter("auto");
-
-        boolean rememberMe = auto != null && auto.equals("on");
-
         req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
     }
 
@@ -39,8 +36,20 @@ public class LoginController extends HttpServlet {
         String mid = req.getParameter("mid");
         String mpw = req.getParameter("mpw");
 
+        String auto = req.getParameter("auto");
+
+        boolean rememberMe = auto != null && auto.equals("on");
+
         try {
             MemberDTO memberDTO = MemberService.INSTANCE.login(mid, mpw);
+
+            if (rememberMe) {
+                String uuid = UUID.randomUUID().toString();
+
+                MemberService.INSTANCE.updateUuid(mid, uuid);
+                memberDTO.setUuid(uuid);
+            }
+
             HttpSession session = req.getSession();
             session.setAttribute("loginInfo", memberDTO);
             resp.sendRedirect("/todo/list");
