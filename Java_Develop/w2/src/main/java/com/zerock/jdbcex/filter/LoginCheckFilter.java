@@ -65,7 +65,7 @@ public class LoginCheckFilter implements Filter {
     }
 
     private Cookie findCookie(Cookie[] cookies, String name) {
-        
+
         if (cookies == null || cookies.length == 0) {
             return null;
         }
