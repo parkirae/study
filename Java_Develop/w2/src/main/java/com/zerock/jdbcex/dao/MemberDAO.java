@@ -3,6 +3,7 @@ package com.zerock.jdbcex.dao;
 import com.zerock.jdbcex.domain.MemberVO;
 import lombok.Cleanup;
 
+import java.lang.reflect.Member;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,5 +51,29 @@ public class MemberDAO {
         preparedStatement.setString(2, mid);
 
         preparedStatement.executeUpdate();
+    }
+
+    public MemberVO selectUUID(String uuid) throws Exception {
+
+        String query = "SELECT mid, mpw, mname, uuid FROM tbl_member WHERE uuid = ?";
+
+        @Cleanup
+        Connection connection = ConnectionUtil.INSTANCE.getConnection();
+        @Cleanup
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+        preparedStatement.setString(1, uuid);
+
+        @Cleanup
+        ResultSet resultSet = preparedStatement.executeQuery();
+
+        MemberVO memberVO = MemberVO.builder()
+                .mid(resultSet.getString(1))
+                .mpw(resultSet.getString(2))
+                .mname(resultSet.getString(3))
+                .uuid(resultSet.getString(4))
+                .build();
+
+        return memberVO;
     }
 }
