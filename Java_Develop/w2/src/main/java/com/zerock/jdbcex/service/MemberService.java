@@ -29,4 +29,8 @@ public enum MemberService {
 
         return memberDTO;
     }
+
+    public void updateUuid(String mid, String uuid) throws Exception {
+        dao.updateUuid(mid, uuid);
+    }
 }
