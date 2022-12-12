@@ -4,10 +4,7 @@ import com.zerock.jdbcex.dto.MemberDTO;
 import com.zerock.jdbcex.service.MemberService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 import lombok.extern.java.Log;
 
 import java.io.IOException;
@@ -48,6 +45,12 @@ public class LoginController extends HttpServlet {
 
                 MemberService.INSTANCE.updateUuid(mid, uuid);
                 memberDTO.setUuid(uuid);
+
+                Cookie rememberCookie = new Cookie("remember-me", uuid);
+                rememberCookie.setMaxAge(60 * 60 * 24 * 7);
+                rememberCookie.setPath("/");
+
+                resp.addCookie(rememberCookie);
             }
 
             HttpSession session = req.getSession();
