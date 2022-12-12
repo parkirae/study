@@ -1,5 +1,7 @@
 package com.zerock.jdbcex.controller;
 
+import com.zerock.jdbcex.dto.MemberDTO;
+import com.zerock.jdbcex.service.MemberService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,17 +21,6 @@ public class LoginController extends HttpServlet {
 
         log.info("login get...");
 
-        String mid = req.getParameter("mid");
-        String mpw = req.getParameter("mpw");
-
-        String str = mid + mpw;
-
-        HttpSession session = req.getSession();
-
-        session.setAttribute("loginInfo", str);
-
-        resp.sendRedirect("/todo/list");
-
         req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
     }
 
@@ -40,13 +31,14 @@ public class LoginController extends HttpServlet {
 
         String mid = req.getParameter("mid");
         String mpw = req.getParameter("mpw");
-
-        String str = mid + mpw;
-
-        HttpSession session = req.getSession();
-
-        session.setAttribute("loginInfo", str);
-
-        resp.sendRedirect("/todo/list");
+        
+        try {
+            MemberDTO memberDTO = MemberService.INSTANCE.login(mid, mpw);
+            HttpSession session = req.getSession();
+            session.setAttribute("loginInfo", memberDTO);
+            resp.sendRedirect("/todo/list");
+        } catch (Exception e) {
+            resp.sendRedirect("/login?result=error");
+        }
     }
 }
