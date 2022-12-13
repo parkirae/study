@@ -5,5 +5,5 @@
 
     <bean class="com.zerock.springex.sample.SampleDAO"></bean>
     <bean class="com.zerock.springex.sample.SampleService"></bean>
-    
+
 </beans>
