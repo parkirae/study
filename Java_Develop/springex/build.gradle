@@ -30,6 +30,11 @@ dependencies {
     implementation group: 'org.springframework', name: 'spring-core', version: '5.3.19'
     implementation group: 'org.springframework', name: 'spring-context', version: '5.3.19'
     implementation group: 'org.springframework', name: 'spring-test', version: '5.3.19'
+
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 }
 
 test {
