@@ -1,4 +1,4 @@
-package com.zerock.springex;
+package org.zerock.springex;
 
 import java.io.*;
 
