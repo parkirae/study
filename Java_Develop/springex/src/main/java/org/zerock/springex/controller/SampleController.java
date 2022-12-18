@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
+
 @Log4j2
 @Controller
 public class SampleController {
@@ -28,4 +30,9 @@ public class SampleController {
         log.info("age: " + age) ;
     }
 
+    @GetMapping("/ex3")
+    public void ex(LocalDate dueDate) {
+        log.info("ex3...");
+        log.info("dueDate: " + dueDate);
+    }
 }
