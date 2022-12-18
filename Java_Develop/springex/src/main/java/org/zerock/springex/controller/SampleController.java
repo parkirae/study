@@ -3,6 +3,7 @@ package org.zerock.springex.controller;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Log4j2
 @Controller
@@ -19,4 +20,12 @@ public class SampleController {
         log.info("name: " + name);
         log.info("age: " + age);
     }
+
+    @GetMapping("/ex2")
+    public void ex2(@RequestParam(name = "name", defaultValue = "AAA") String name, @RequestParam(name = "age", defaultValue = "20") int age) {
+        log.info("ex2...");
+        log.info("name: " + name);
+        log.info("age: " + age) ;
+    }
+
 }
