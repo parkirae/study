@@ -12,4 +12,11 @@ public class SampleController {
     public void hello() {
         log.info("hello...");
     }
+
+    @GetMapping("/ex1")
+    public void ex1(String name, int age) {
+        log.info("ex1...");
+        log.info("name: " + name);
+        log.info("age: " + age);
+    }
 }
