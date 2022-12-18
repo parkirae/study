@@ -16,7 +16,7 @@
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatters">
             <set>
-                <bean class="org.zerock.springex.formatter.LocalDateFormatter" />
+                <bean class="org.zerock.springex.controller.formatter.LocalDateFormatter" />
             </set>
         </property>
     </bean>
