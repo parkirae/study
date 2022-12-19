@@ -55,6 +55,6 @@ public class SampleController {
 
     @GetMapping("/ex6")
     public void ex6() {
-        
+
     }
 }
