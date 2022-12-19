@@ -6,6 +6,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.zerock.springex.domain.TodoVO;
+
+import java.time.LocalDate;
 
 @Log4j2
 @ExtendWith(SpringExtension.class)
@@ -18,5 +21,16 @@ public class TodoMapperTests {
     @Test
     public void testGetTime() {
         log.info(todoMapper.getTime());
+    }
+
+    @Test
+    public void testInsert() {
+        TodoVO todoVO = TodoVO.builder()
+                .title("Spring test")
+                .dueDate(LocalDate.of(2022, 12, 25))
+                .writer("irae")
+                .build();
+
+        todoMapper.insert(todoVO);
     }
 }
