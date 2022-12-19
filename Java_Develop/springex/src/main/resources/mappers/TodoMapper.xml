@@ -7,4 +7,8 @@
     <select id="getTime" resultType="string">
         select now()
     </select>
+
+    <insert id="insert">
+        INSERT INTO tbl_todo(title, dueDate, writer) VALUES(#{title}, #{dueDate}, #{writer})
+    </insert>
 </mapper>
