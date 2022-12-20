@@ -13,4 +13,7 @@ public interface TodoMapper {
     
     // 전체 조회
     List<TodoVO> selectAll();
+
+    // 단건 조회
+    TodoVO selectOne(Long tno);
 }
