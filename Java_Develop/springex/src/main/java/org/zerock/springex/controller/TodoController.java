@@ -22,11 +22,6 @@ public class TodoController {
 
     private final TodoService todoService;
 
-    @RequestMapping("/list")
-    public void list(Model model) {
-        log.info("todo list...");
-    }
-
     @GetMapping("/register")
     public void registerGET() {
         log.info("GET todo register...");
@@ -49,5 +44,13 @@ public class TodoController {
         todoService.register(todoDTO);
 
         return "redirect:/todo/list";
+    }
+
+    // 전체 조회
+    @RequestMapping("/list")
+    public void list(Model model) {
+        log.info("todo list...");
+
+        model.addAttribute("dtoList", todoService.getAll());
     }
 }
