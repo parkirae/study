@@ -19,4 +19,7 @@ public interface TodoMapper {
 
     // 삭제
     void delete(Long tno);
+
+    // 수정
+    void update(TodoVO todoVO);
 }
