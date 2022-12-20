@@ -8,6 +8,7 @@
         select now()
     </select>
 
+    <!--등록-->
     <insert id="insert">
         INSERT INTO tbl_todo(title, dueDate, writer) VALUES(#{title}, #{dueDate}, #{writer})
     </insert>

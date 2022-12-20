@@ -6,5 +6,6 @@ public interface TodoMapper {
 
     String getTime();
 
+    // 등록
     void insert(TodoVO todoVO);
 }

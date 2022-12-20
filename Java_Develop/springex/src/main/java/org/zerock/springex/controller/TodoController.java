@@ -32,6 +32,7 @@ public class TodoController {
         log.info("GET todo register...");
     }
 
+    // 등록
     @PostMapping("/register")
     public String registerPost(@Valid TodoDTO todoDTO, RedirectAttributes redirectAttributes, BindingResult bindingResult) {
         log.info("POST todo register...");
