@@ -16,4 +16,7 @@ public interface TodoMapper {
 
     // 단건 조회
     TodoVO selectOne(Long tno);
+
+    // 삭제
+    void delete(Long tno);
 }
