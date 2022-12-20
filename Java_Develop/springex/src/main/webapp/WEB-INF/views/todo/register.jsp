@@ -84,9 +84,7 @@
                             console.log(serverValidResult)
 
                         </script>
-
                     </div>
-
                 </div>
             </div>
         </div>
