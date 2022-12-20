@@ -1,9 +1,13 @@
 package org.zerock.springex.dto;
 
 import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.util.List;
 
+@Getter
+@ToString
 public class PageResponseDTO<E> {
 
     private int page;
