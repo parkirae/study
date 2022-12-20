@@ -1,6 +1,7 @@
 package org.zerock.springex.mapper;
 
 import org.zerock.springex.domain.TodoVO;
+import org.zerock.springex.dto.PageRequestDTO;
 
 import java.util.List;
 
@@ -22,4 +23,7 @@ public interface TodoMapper {
 
     // 수정
     void update(TodoVO todoVO);
+
+    // 목록 처리
+    List<TodoVO> selectList(PageRequestDTO pageRequestDTO);
 }
