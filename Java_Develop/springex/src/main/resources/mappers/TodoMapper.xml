@@ -27,4 +27,9 @@
     <delete id="delete">
         DELETE FROM tbl_todo WHERE tno = #{tno}
     </delete>
+
+    <!--수정-->
+    <update id="update">
+        UPDATE tbl_todo SET title = #{title}, dueDate = #{dueDate}, finished = #{finished} WHERE tno = #{tno}
+    </update>
 </mapper>
