@@ -33,7 +33,6 @@ public class TodoServiceImpl implements TodoService {
     }
 
     // 전체 조회
-
     @Override
     public List<TodoDTO> getAll() {
 
@@ -43,4 +42,15 @@ public class TodoServiceImpl implements TodoService {
 
         return dtoList;
     }
+
+    // 단건 조회
+    @Override
+    public TodoDTO getOne(Long tno) {
+        TodoVO todoVO = todoMapper.selectOne(tno);
+
+        TodoDTO todoDTO = modelMapper.map(todoVO, TodoDTO.class);
+
+        return todoDTO;
+    }
+
 }
