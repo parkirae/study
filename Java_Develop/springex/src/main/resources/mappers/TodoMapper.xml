@@ -32,4 +32,9 @@
     <update id="update">
         UPDATE tbl_todo SET title = #{title}, dueDate = #{dueDate}, finished = #{finished} WHERE tno = #{tno}
     </update>
+
+    <!--목록 처리-->
+    <select id="selectList" resultType="org.zerock.springex.domain.TodoVO">
+        SELECT * FROM tbl_todo ORDER BY tno DESC limit #{skip}, #{size}
+    </select>
 </mapper>
