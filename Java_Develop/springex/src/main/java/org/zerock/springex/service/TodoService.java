@@ -11,4 +11,7 @@ public interface TodoService {
 
     // 전체 조회
     List<TodoDTO> getAll();
+
+    // 단건 조회
+    TodoDTO getOne(Long tno);
 }
