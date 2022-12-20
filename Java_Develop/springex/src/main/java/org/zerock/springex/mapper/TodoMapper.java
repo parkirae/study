@@ -26,4 +26,7 @@ public interface TodoMapper {
 
     // 목록 처리
     List<TodoVO> selectList(PageRequestDTO pageRequestDTO);
+
+    // 전체 개수 조회
+    int getCount(PageRequestDTO pageRequestDTO);
 }
