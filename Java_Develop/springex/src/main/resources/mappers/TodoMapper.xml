@@ -17,4 +17,9 @@
     <select id="selectAll" resultType="org.zerock.springex.domain.TodoVO">
         SELECT * FROM tbl_todo ORDER BY tno DESC
     </select>
+
+    <!--단건 조회-->
+    <select id="selectOne" resultType="org.zerock.springex.domain.TodoVO">
+        SELECT * FROM tbl_todo WHERE tno = #{tno}
+    </select>
 </mapper>
