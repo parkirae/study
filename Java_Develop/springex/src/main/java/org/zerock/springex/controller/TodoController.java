@@ -47,12 +47,12 @@ public class TodoController {
     }
 
     // 전체 조회
-    @RequestMapping("/list")
-    public void list(Model model) {
-        log.info("todo list...");
-
-        model.addAttribute("dtoList", todoService.getAll());
-    }
+//    @RequestMapping("/list")
+//    public void list(Model model) {
+//        log.info("todo list...");
+//
+//        model.addAttribute("dtoList", todoService.getAll());
+//    }
 
     // 단건 조회 및 수정
     @GetMapping({"/read", "/modify"})
