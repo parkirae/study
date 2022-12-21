@@ -13,7 +13,7 @@ import javax.validation.constraints.Positive;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PageRequestDTO {
+public class PageRequestDTO<E> {
 
     @Builder.Default
     @Min(value = 1)

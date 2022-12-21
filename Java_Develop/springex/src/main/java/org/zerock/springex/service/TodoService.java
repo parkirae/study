@@ -1,5 +1,6 @@
 package org.zerock.springex.service;
 
+import org.zerock.springex.dto.PageRequestDTO;
 import org.zerock.springex.dto.TodoDTO;
 
 import java.util.List;
@@ -10,7 +11,8 @@ public interface TodoService {
     void register(TodoDTO todoDTO);
 
     // 전체 조회
-    List<TodoDTO> getAll();
+    //List<TodoDTO> getAll();
+    PageRequestDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO);
 
     // 단건 조회
     TodoDTO getOne(Long tno);
