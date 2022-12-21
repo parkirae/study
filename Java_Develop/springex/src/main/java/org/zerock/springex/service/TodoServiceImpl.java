@@ -5,6 +5,8 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.zerock.springex.domain.TodoVO;
+import org.zerock.springex.dto.PageRequestDTO;
+import org.zerock.springex.dto.PageResponseDTO;
 import org.zerock.springex.dto.TodoDTO;
 import org.zerock.springex.mapper.TodoMapper;
 
@@ -33,14 +35,34 @@ public class TodoServiceImpl implements TodoService {
     }
 
     // 전체 조회
-    @Override
-    public List<TodoDTO> getAll() {
+//    @Override
+//    public List<TodoDTO> getAll() {
+//
+//        List<TodoDTO> dtoList = todoMapper.selectAll().stream()
+//                .map(vo -> modelMapper.map(vo, TodoDTO.class))
+//                .collect(Collectors.toList());
+//
+//        return dtoList;
+//    }
 
-        List<TodoDTO> dtoList = todoMapper.selectAll().stream()
+    // 전체 조회(페이징 처리)
+    @Override
+    public PageResponseDTO<TodoDTO> getList(PageRequestDTO pageRequestDTO) {
+
+        List<TodoVO> voList = todoMapper.selectList(pageRequestDTO);
+        List<TodoDTO> dtoList = voList.stream()
                 .map(vo -> modelMapper.map(vo, TodoDTO.class))
                 .collect(Collectors.toList());
 
-        return dtoList;
+        int total = todoMapper.getCount(pageRequestDTO);
+
+        PageResponseDTO<TodoDTO> pageResponseDTO = PageResponseDTO.<TodoDTO>withAll()
+                .dtoList(dtoList)
+                .total(total)
+                .pageRequestDTO(pageRequestDTO)
+                .build();
+
+        return pageResponseDTO;
     }
 
     // 단건 조회
