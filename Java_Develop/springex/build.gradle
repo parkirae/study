@@ -3,7 +3,7 @@ plugins {
     id 'war'
 }
 
-group 'com.zerock'
+group 'org.zerock'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -11,7 +11,7 @@ repositories {
 }
 
 ext {
-    junitVersion = '5.8.2'
+    junitVersion = '5.8.1'
 }
 
 sourceCompatibility = '11'
@@ -54,6 +54,7 @@ dependencies {
 
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.0.0'
 
+    implementation group: 'org.hibernate', name: 'hibernate-validator', version: '6.2.1.Final'
 }
 
 test {
