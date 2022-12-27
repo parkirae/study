@@ -8,12 +8,19 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
+import java.time.LocalDate;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class PageRequestDTO<E> {
+
+    private String[] types;
+    private String keyword;
+    private boolean finished;
+    private LocalDate from;
+    private LocalDate to;
 
     @Builder.Default
     @Min(value = 1)
