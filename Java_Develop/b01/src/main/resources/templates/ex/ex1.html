@@ -5,8 +5,18 @@
     <title>Document</title>
 </head>
 <body>
-    <h4>[[${list}]]</h4>
-    <hr />
-    <h4 th:text="${list}"></h4>
+<!--    <h4>[[${list}]]</h4>-->
+<!--    <hr />-->
+<!--    <h4 th:text="${list}"></h4>-->
+
+<ul>
+    <li th:each="str: ${list}" th:text="${str}"></li>
+</ul>
+
+<ul>
+    <th:block th:each="str: ${list}">
+        <li>[[${str}]]</li>
+    </th:block>
+</ul>
 </body>
 </html>
