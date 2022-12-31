@@ -32,4 +32,43 @@ public class SampleController {
 
         model.addAttribute("list", list);
     }
+
+    class SampleDTO {
+        private String p1, p2, p3;
+
+        public String getp1() {
+            return p1;
+        }
+        public String getp2() {
+            return p2;
+        }
+        public String getp3() {
+            return p3;
+        }
+    }
+
+    @GetMapping("/ex/ex2")
+    public void ex2(Model model) {
+
+        log.info("ex/ex2...");
+
+        List<String> strList = IntStream.range(1, 10)
+                .mapToObj(i -> "Data" + i)
+                .collect(Collectors.toList());
+
+        model.addAttribute("list", strList);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("A", "AAAA");
+        map.put("B", "BBBB");
+
+        model.addAttribute("map", map);
+
+        SampleDTO sampleDTO = new SampleDTO();
+        sampleDTO.p1 = "Value -- p1";
+        sampleDTO.p2 = "Value -- p2";
+        sampleDTO.p3 = "Value -- p3";
+
+        model.addAttribute("dto", sampleDTO);
+    }
 }
