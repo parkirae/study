@@ -24,4 +24,12 @@ public class SampleController {
 
         model.addAttribute("msg", "HELLO WORLD");
     }
+
+    @GetMapping("/ex/ex1")
+    public void ex1(Model model) {
+
+        List<String> list = Arrays.asList("AAA", "BBB", "CCC", "DDD");
+
+        model.addAttribute("list", list);
+    }
 }
