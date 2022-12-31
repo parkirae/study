@@ -12,4 +12,3 @@ public class B01Application {
     }
 
 }
-
