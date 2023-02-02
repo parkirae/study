@@ -66,4 +66,19 @@ public class TodoMapperTests {
 
         voList.forEach(vo -> log.info(vo));
     }
+
+    // 동적 쿼리
+    @Test
+    public void testSelectSearch() {
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder()
+                .page(1)
+                .size(10)
+                .types(new String[]{"t", "w"})
+                .keyword("AAAA")
+                .build();
+
+        List<TodoVO> voList = todoMapper.selectList(pageRequestDTO);
+
+        voList.forEach(vo -> log.info(vo));
+    }
 }

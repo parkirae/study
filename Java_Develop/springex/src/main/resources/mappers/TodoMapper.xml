@@ -42,4 +42,13 @@
     <select id="getCount" resultType="int">
         SELECT count(tno) FROM tbl_todo
     </select>
+
+    <!--동적 쿼리-->
+    <select id="selectList" resultType="org.zerock.springex.domain.TodoVO">
+        SELECT * FROM tbl_todo
+        <foreach collection="types" item="type">
+            #{type}
+        </foreach>
+        ORDER BY tno DESC limit #{skip}, #{size}
+    </select>
 </mapper>
